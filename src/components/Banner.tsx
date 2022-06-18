@@ -26,15 +26,16 @@ const Banner = ({ netflixOriginals }: BannerProps) => {
 					layout='fill'
 					src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
 					objectFit='cover'
+					priority
 				/>
 			</div>
+
 			<h1 className='text-2xl font-bold md:text-4xl lg:text-7xl'>
 				{movie?.title || movie?.name || movie?.original_name}
 			</h1>
 			<p className='max-w-xs text-xs text-shadow-md md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl'>
 				{movie?.overview}
 			</p>
-
 			<div className='flex space-x-3'>
 				<button className='bannerButton bg-white text-black'>
 					<FaPlay className='h-4 w-4 text-black md:h-7 md:w-7' />
