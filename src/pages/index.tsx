@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Banner from '../components/Banner'
 
 import Header from '../components/Header'
+import MainLayout from '../components/MainLayout'
 import Row from '../components/Row'
 import { Movie } from '../types'
 import requests from '../utils/requests'
@@ -28,30 +29,25 @@ const Home = ({
 	trendingNow,
 }: HomeProps) => {
 	return (
-		<div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
-			<Head>
-				<title>Home | Netflix</title>
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-
-			<Header />
-
-			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16 '>
-				<Banner netflixOriginals={netflixOriginals} />
-
-				<section className='md:space-y-24'>
-					<Row title='Trending Now' movies={trendingNow} />
-					<Row title='Top Rated' movies={topRated} />
-					<Row title='Action Thrillers' movies={actionMovies} />
-					{/* My List */}
-					<Row title='Comedies' movies={comedyMovies} />
-					<Row title='Scary Movies' movies={horrorMovies} />
-					<Row title='Romance Movies' movies={romanceMovies} />
-					<Row title='Documentaries' movies={documentaries} />
-				</section>
-			</main>
-			{/* Modal */}
-		</div>
+		<MainLayout title='Home | Netflix'>
+			<div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
+				<Header />
+				<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16 '>
+					<Banner netflixOriginals={netflixOriginals} />
+					<section className='md:space-y-24'>
+						<Row title='Trending Now' movies={trendingNow} />
+						<Row title='Top Rated' movies={topRated} />
+						<Row title='Action Thrillers' movies={actionMovies} />
+						{/* My List */}
+						<Row title='Comedies' movies={comedyMovies} />
+						<Row title='Scary Movies' movies={horrorMovies} />
+						<Row title='Romance Movies' movies={romanceMovies} />
+						<Row title='Documentaries' movies={documentaries} />
+					</section>
+				</main>
+				{/* Modal */}
+			</div>
+		</MainLayout>
 	)
 }
 
