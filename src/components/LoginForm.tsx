@@ -4,9 +4,11 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import Email from './FormUI/Email'
 import { LoginFormDataType } from '../types'
 import Password from './FormUI/Password'
+import useAuth from '../hooks/useAuth'
 
 const LoginForm = () => {
-	const [login, setLogin] = useState(false)
+	const [login, setLogin] = useState(true)
+	const { signIn, signUp } = useAuth()
 
 	const {
 		register,
@@ -14,11 +16,11 @@ const LoginForm = () => {
 		formState: { errors },
 	} = useForm<LoginFormDataType>()
 
-	const onSubmit: SubmitHandler<LoginFormDataType> = data => {
+	const onSubmit: SubmitHandler<LoginFormDataType> = async data => {
 		if (login) {
-			console.log(data.email, data.password)
+			await signIn(data.email, data.password)
 		} else {
-			console.log(data.email, data.password)
+			await signUp(data.email, data.password)
 		}
 	}
 
@@ -28,26 +30,27 @@ const LoginForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			noValidate
 		>
-			<h1 className='text-4xl font-semibold'>Sign In</h1>
+			<h1 className='text-4xl font-semibold'>
+				{login ? 'Sign In' : 'Sign Up'}
+			</h1>
 			<div className='space-y-4'>
 				<Email register={register} error={errors?.email?.message} />
 				<Password register={register} error={errors?.password?.message} />
 			</div>
 			<button
 				className='w-full rounded bg-[#E50914] py-3 font-semibold'
-				onClick={() => setLogin(true)}
 				type='submit'
 			>
-				Sign In
+				{login ? 'Sign In' : 'Sign Up'}
 			</button>
 			<div className='text-[gray]'>
-				New to Netflix? &nbsp;
+				{login ? 'New to Netflix?' : 'Already have an account?'} &nbsp;
 				<button
 					className='cursor-pointer text-white hover:underline'
-					onClick={() => setLogin(false)}
-					type='submit'
+					onClick={() => (login ? setLogin(false) : setLogin(true))}
+					type='button'
 				>
-					Sign up now
+					{login ? 'Sign up now' : 'Sign in'}
 				</button>
 			</div>
 		</form>

@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Banner from '../components/Banner'
 
 import Header from '../components/Header'
@@ -6,6 +5,7 @@ import MainLayout from '../components/MainLayout'
 import Row from '../components/Row'
 import { Movie } from '../types'
 import requests from '../utils/requests'
+import useAuth from '../hooks/useAuth'
 
 interface HomeProps {
 	netflixOriginals: Movie[]
@@ -28,6 +28,10 @@ const Home = ({
 	topRated,
 	trendingNow,
 }: HomeProps) => {
+	const { loading } = useAuth()
+
+	if (loading) return null
+
 	return (
 		<MainLayout title='Home | Netflix'>
 			<div className={`relative h-screen bg-gradient-to-b lg:h-[140vh]`}>
