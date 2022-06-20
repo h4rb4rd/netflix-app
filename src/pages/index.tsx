@@ -2,13 +2,14 @@ import { useRecoilValue } from 'recoil'
 
 import Banner from '../components/Banner'
 import Header from '../components/Header'
-import { modalState } from '../atoms/modalAtom'
+import { infoModalState, movieModalState } from '../atoms/modalAtom'
 import MainLayout from '../components/MainLayout'
 import MovieModal from '../components/MovieModal'
 import Row from '../components/Row'
 import { IMovie } from '../types'
 import requests from '../utils/requests'
 import useAuth from '../hooks/useAuth'
+import InfoModal from '../components/InfoModal'
 
 interface HomeProps {
 	netflixOriginals: IMovie[]
@@ -32,7 +33,8 @@ const Home = ({
 	trendingNow,
 }: HomeProps) => {
 	const { loading } = useAuth()
-	const showModal = useRecoilValue(modalState)
+	const showMovieModal = useRecoilValue(movieModalState)
+	const showInfoModal = useRecoilValue(infoModalState)
 
 	if (loading) return null
 
@@ -53,7 +55,8 @@ const Home = ({
 						<Row title='Documentaries' movies={documentaries} />
 					</section>
 				</main>
-				{showModal && <MovieModal />}
+				{showMovieModal && <MovieModal />}
+				{showInfoModal && <InfoModal />}
 			</div>
 		</MainLayout>
 	)

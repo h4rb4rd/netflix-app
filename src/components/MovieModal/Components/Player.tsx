@@ -15,7 +15,7 @@ interface PlayerProps {
 }
 
 const Player = ({ trailer }: PlayerProps) => {
-	const [muted, setMuted] = useState(true)
+	const [muted, setMuted] = useState(false)
 	const [played, setPLayed] = useState(true)
 	const [addedToList, setAddedToList] = useState(false)
 

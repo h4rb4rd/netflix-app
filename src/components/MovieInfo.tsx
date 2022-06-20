@@ -1,12 +1,12 @@
 import { useRecoilValue } from 'recoil'
 
-import { GenreType } from '../../../types'
-import { movieState } from '../../../atoms/modalAtom'
+import { movieState } from '../atoms/modalAtom'
+import { GenreType } from '../types'
 
 interface InfoProps {
 	genres: GenreType[]
 }
-const Info = ({ genres }: InfoProps) => {
+const MovieInfo = ({ genres }: InfoProps) => {
 	const movie = useRecoilValue(movieState)
 
 	return (
@@ -47,4 +47,4 @@ const Info = ({ genres }: InfoProps) => {
 	)
 }
 
-export default Info
+export default MovieInfo

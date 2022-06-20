@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useRecoilState } from 'recoil'
-import { modalState, movieState } from '../atoms/modalAtom'
+import { movieModalState, movieState } from '../atoms/modalAtom'
 
 import { IMovie } from '../types'
 
@@ -10,7 +10,7 @@ interface ThumbnailProps {
 
 const Thumbnail = ({ movie }: ThumbnailProps) => {
 	const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
-	const [showModal, setShowModal] = useRecoilState(modalState)
+	const [showModal, setShowModal] = useRecoilState(movieModalState)
 
 	return (
 		<div

@@ -6,7 +6,7 @@ import { useRecoilState } from 'recoil'
 
 import { BASE_URL } from '../constants'
 import { IMovie } from '../types'
-import { modalState, movieState } from '../atoms/modalAtom'
+import { infoModalState, movieModalState, movieState } from '../atoms/modalAtom'
 
 interface BannerProps {
 	netflixOriginals: IMovie[]
@@ -14,7 +14,8 @@ interface BannerProps {
 
 const Banner = ({ netflixOriginals }: BannerProps) => {
 	const [movie, setMovie] = useState<IMovie | null>(null)
-	const [showModal, setShowModal] = useRecoilState(modalState)
+	const [showMovieModal, setShowMovieModal] = useRecoilState(movieModalState)
+	const [showInfoModal, setShowInfoModal] = useRecoilState(infoModalState)
 	const [currentMovie, setCurrentMovie] = useRecoilState(movieState)
 
 	useEffect(() => {
@@ -41,7 +42,13 @@ const Banner = ({ netflixOriginals }: BannerProps) => {
 				{movie?.overview}
 			</p>
 			<div className='flex space-x-3'>
-				<button className='bannerButton bg-white text-black'>
+				<button
+					className='bannerButton bg-white text-black'
+					onClick={() => {
+						setCurrentMovie(movie)
+						setShowMovieModal(true)
+					}}
+				>
 					<FaPlay className='h-4 w-4 text-black md:h-7 md:w-7' />
 					Play
 				</button>
@@ -50,7 +57,7 @@ const Banner = ({ netflixOriginals }: BannerProps) => {
 					className='bannerButton bg-[gray]/70'
 					onClick={() => {
 						setCurrentMovie(movie)
-						setShowModal(true)
+						setShowInfoModal(true)
 					}}
 				>
 					<InformationCircleIcon className='h-5 w-5 md:h-8 md:w-8' /> More Info
