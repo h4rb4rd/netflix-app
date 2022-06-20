@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { BellIcon, SearchIcon } from '@heroicons/react/solid'
 
 import NavBar from './components/NavBar'
@@ -30,16 +29,15 @@ const Header = () => {
 			<NavBar />
 			<div className='flex items-center space-x-4 text-sm font-light'>
 				<SearchIcon className='hidden sm:inline h-6 w-6' />
-				<p className='hidden lg:inline'>Kids</p>
+				<p className='hidden lg:inline cursor-default'>Kids</p>
 				<BellIcon className='h-6 w-6' />
-				{/* <Link href='/account'> */}
 				<img
 					src='https://rb.gy/g1pwyx'
 					alt=''
 					className='cursor-pointer rounded'
 					onClick={logout}
+					title='Logout'
 				/>
-				{/* </Link> */}
 			</div>
 		</header>
 	)
