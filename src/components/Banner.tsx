@@ -4,7 +4,7 @@ import { InformationCircleIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import { useRecoilState } from 'recoil'
 
-import { baseUrl } from '../constants'
+import { BASE_URL } from '../constants'
 import { IMovie } from '../types'
 import { modalState, movieState } from '../atoms/modalAtom'
 
@@ -28,7 +28,7 @@ const Banner = ({ netflixOriginals }: BannerProps) => {
 			<div className='absolute top-0 left-0 -z-10 h-[95vh] w-screen'>
 				<Image
 					layout='fill'
-					src={`${baseUrl}${movie?.backdrop_path || movie?.poster_path}`}
+					src={`${BASE_URL}${movie?.backdrop_path || movie?.poster_path}`}
 					objectFit='cover'
 					priority
 				/>
