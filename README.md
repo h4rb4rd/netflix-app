@@ -6,5 +6,7 @@ This application is a clone of netflix.
 
 - Nextjs
 - Tailwindcss
+- Recoil
+- Material UI
 
 ## Deploy

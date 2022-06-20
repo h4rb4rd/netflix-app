@@ -1,21 +1,24 @@
-import Banner from '../components/Banner'
+import { useRecoilValue } from 'recoil'
 
+import Banner from '../components/Banner'
 import Header from '../components/Header'
+import { modalState } from '../atoms/modalAtom'
 import MainLayout from '../components/MainLayout'
+import MovieModal from '../components/MovieModal'
 import Row from '../components/Row'
-import { Movie } from '../types'
+import { IMovie } from '../types'
 import requests from '../utils/requests'
 import useAuth from '../hooks/useAuth'
 
 interface HomeProps {
-	netflixOriginals: Movie[]
-	trendingNow: Movie[]
-	topRated: Movie[]
-	actionMovies: Movie[]
-	comedyMovies: Movie[]
-	horrorMovies: Movie[]
-	romanceMovies: Movie[]
-	documentaries: Movie[]
+	netflixOriginals: IMovie[]
+	trendingNow: IMovie[]
+	topRated: IMovie[]
+	actionMovies: IMovie[]
+	comedyMovies: IMovie[]
+	horrorMovies: IMovie[]
+	romanceMovies: IMovie[]
+	documentaries: IMovie[]
 }
 
 const Home = ({
@@ -29,6 +32,7 @@ const Home = ({
 	trendingNow,
 }: HomeProps) => {
 	const { loading } = useAuth()
+	const showModal = useRecoilValue(modalState)
 
 	if (loading) return null
 
@@ -49,7 +53,7 @@ const Home = ({
 						<Row title='Documentaries' movies={documentaries} />
 					</section>
 				</main>
-				{/* Modal */}
+				{showModal && <MovieModal />}
 			</div>
 		</MainLayout>
 	)

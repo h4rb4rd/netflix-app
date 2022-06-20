@@ -1,12 +1,12 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import { useRef, useState } from 'react'
 
-import { Movie } from '../types'
+import { IMovie } from '../types'
 import Thumbnail from './Thumbnail'
 
 interface RowProps {
 	title: string
-	movies: Movie[]
+	movies: IMovie[]
 }
 
 const Row = ({ title, movies }: RowProps) => {

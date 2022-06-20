@@ -1,4 +1,4 @@
-export interface Movie {
+export interface IMovie {
 	title: string
 	backdrop_path: string
 	media_type?: string
@@ -20,4 +20,19 @@ export interface Movie {
 export type LoginFormDataType = {
 	email: string
 	password: string
+}
+
+export type GenreType = {
+	id: number
+	name: string
+}
+
+export interface IElement {
+	type:
+		| 'Bloopers'
+		| 'Featurette'
+		| 'Behind the Scenes'
+		| 'Clip'
+		| 'Trailer'
+		| 'Teaser'
 }
