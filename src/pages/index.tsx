@@ -10,6 +10,7 @@ import { IMovie } from '../types'
 import requests from '../utils/requests'
 import useAuth from '../hooks/useAuth'
 import InfoModal from '../components/InfoModal'
+import useList from '../hooks/useList'
 
 interface HomeProps {
 	netflixOriginals: IMovie[]
@@ -32,9 +33,10 @@ const Home = ({
 	topRated,
 	trendingNow,
 }: HomeProps) => {
-	const { loading } = useAuth()
+	const { user, loading } = useAuth()
 	const showMovieModal = useRecoilValue(movieModalState)
 	const showInfoModal = useRecoilValue(infoModalState)
+	const list = useList(user?.uid)
 
 	if (loading) return null
 
@@ -48,7 +50,7 @@ const Home = ({
 						<Row title='Trending Now' movies={trendingNow} />
 						<Row title='Top Rated' movies={topRated} />
 						<Row title='Action Thrillers' movies={actionMovies} />
-						{/* My List */}
+						{list.length > 0 && <Row title='My List' movies={list} />}
 						<Row title='Comedies' movies={comedyMovies} />
 						<Row title='Scary Movies' movies={horrorMovies} />
 						<Row title='Romance Movies' movies={romanceMovies} />

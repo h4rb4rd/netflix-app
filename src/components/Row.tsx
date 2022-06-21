@@ -1,4 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { DocumentData } from 'firebase/firestore'
 import { useRef, useState } from 'react'
 
 import { IMovie } from '../types'
@@ -6,7 +7,7 @@ import Thumbnail from './Thumbnail'
 
 interface RowProps {
 	title: string
-	movies: IMovie[]
+	movies: IMovie[] | DocumentData[]
 }
 
 const Row = ({ title, movies }: RowProps) => {
@@ -17,13 +18,17 @@ const Row = ({ title, movies }: RowProps) => {
 		setIsMoved(true)
 
 		if (rowRef.current) {
-			const { scrollLeft, clientWidth } = rowRef.current
+			const { scrollLeft, clientWidth, scrollWidth } = rowRef.current
 
 			const scrollTo =
 				direction === 'left'
 					? scrollLeft - clientWidth
 					: scrollLeft + clientWidth
 			rowRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' })
+
+			if (scrollTo < 0) {
+				setIsMoved(false)
+			}
 		}
 	}
 
