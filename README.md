@@ -10,3 +10,4 @@ This application is a clone of netflix.
 - Material UI
 
 ## Deploy
+https://netflix-app-psi.vercel.app/
